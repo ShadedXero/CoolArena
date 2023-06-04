@@ -41,8 +41,13 @@ public class CoolArenaCommand implements TabExecutor {
                 player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
                 return false;
             }
+            if (!coolArenaManager.getArenaManager().getArena().isBattlefield(player.getWorld())) {
+                player.sendMessage(MessageUtils.color("&cYou must be in the battlefield to use this"));
+                return false;
+            }
             coolArenaManager.getArenaManager().getArena().reset(player);
             player.teleport(coolArenaManager.getArenaManager().getArena().getLobby().getLocation());
+            return true;
         }
         if (args[0].equalsIgnoreCase("add")) {
             if (!player.hasPermission("coolarena.add")) {
@@ -56,6 +61,7 @@ public class CoolArenaCommand implements TabExecutor {
             String kitId = args[1];
             Kit kit = new Kit(kitId, kitId, player.getInventory());
             coolArenaManager.getKitManager().addKit(kit);
+            return true;
         }
         if (args[0].equalsIgnoreCase("remove")) {
             if (!player.hasPermission("coolarena.remove")) {
@@ -69,6 +75,7 @@ public class CoolArenaCommand implements TabExecutor {
             String kitId = args[1];
             coolArenaManager.getKitManager().getKitConfig().removeKit(kitId);
             player.sendMessage(MessageUtils.color("&aKit Removed"));
+            return true;
         }
         if (args[0].equalsIgnoreCase("reload")) {
             if (!player.hasPermission("coolarena.reload")) {
@@ -85,7 +92,7 @@ public class CoolArenaCommand implements TabExecutor {
         }
         List<String> kitIds = new ArrayList<>(coolArenaManager.getKitManager().getKitById().keySet());
         for (String kitId : kitIds) {
-            if (kitId.equalsIgnoreCase(args[0])) {
+            if (!kitId.equalsIgnoreCase(args[0])) {
                 continue;
             }
             coolArenaManager.getArenaManager().getArena().teleportBattlefield(player);
