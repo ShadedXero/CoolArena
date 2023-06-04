@@ -16,6 +16,7 @@ public class CoolArenaManager {
 
     public CoolArenaManager() {
         this.configManager = new ConfigManager(this);
+        plugin.getServer().getPluginCommand("coolarena").setExecutor(new CoolArenaCommand(this));
     }
 
     public void reload() {

@@ -2,3 +2,8 @@ name: CoolArena
 version: '${project.version}'
 main: me.none030.coolarena.CoolArena
 api-version: 1.13
+commands:
+  coolarena:
+    aliases:
+      - ca
+    permission: coolarena.join
