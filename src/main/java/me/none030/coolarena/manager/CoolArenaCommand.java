@@ -31,7 +31,7 @@ public class CoolArenaCommand implements TabExecutor {
                 player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
                 return false;
             }
-            coolArenaManager.getArenaManager().getArena().teleportArena(player);
+            coolArenaManager.getArenaManager().getArena().teleportBattlefield(player);
             Kit kit = coolArenaManager.getKitManager().getRandomKit();
             kit.give(player);
             return true;

@@ -16,10 +16,10 @@ public class ArenaListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         Player player = e.getPlayer();
-        if (!arenaManager.getArena().isArena(player.getWorld())) {
+        if (!arenaManager.getArena().isBattlefield(player.getWorld())) {
             return;
         }
         arenaManager.getArena().reset(player);
-        player.teleport(arenaManager.getArena().getLobby());
+        player.teleport(arenaManager.getArena().getLobby().getLocation());
     }
 }

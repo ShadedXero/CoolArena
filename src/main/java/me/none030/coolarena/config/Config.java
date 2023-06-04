@@ -1,11 +1,8 @@
 package me.none030.coolarena.config;
 
 import me.none030.coolarena.CoolArena;
-import me.none030.coolarena.utils.MessageUtils;
-import net.kyori.adventure.text.Component;
+import me.none030.coolarena.arena.ArenaLocation;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -18,7 +15,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 public abstract class Config {
 
@@ -34,7 +30,7 @@ public abstract class Config {
 
     public abstract void loadConfig();
 
-    public Location loadLocation(ConfigurationSection section) {
+    public ArenaLocation loadLocation(ConfigurationSection section) {
         if (section == null) {
             return null;
         }
@@ -42,16 +38,12 @@ public abstract class Config {
         if (worldName == null) {
             return null;
         }
-        World world = Bukkit.getWorld(worldName);
-        if (world == null) {
-            return null;
-        }
         double x = section.getDouble("x");
         double y = section.getDouble("y");
         double z = section.getDouble("z");
         float yaw = section.getInt("yaw");
         float pitch = section.getInt("pitch");
-        return new Location(world, x, y, z, yaw, pitch);
+        return new ArenaLocation(worldName, x, y, z, yaw, pitch);
     }
 
     public String serializeInventory(Inventory inventory) {

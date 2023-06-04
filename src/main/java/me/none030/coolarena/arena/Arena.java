@@ -1,18 +1,17 @@
 package me.none030.coolarena.arena;
 
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 public class Arena {
 
-    private final Location arena;
-    private final Location lobby;
+    private final ArenaLocation battlefield;
+    private final ArenaLocation lobby;
 
-    public Arena(Location arena, Location lobby) {
-        this.arena = arena;
+    public Arena(ArenaLocation battlefield, ArenaLocation lobby) {
+        this.battlefield = battlefield;
         this.lobby = lobby;
     }
 
@@ -30,27 +29,27 @@ public class Arena {
         }
     }
 
-    public void teleportArena(Player player) {
-        player.teleport(arena);
+    public void teleportBattlefield(Player player) {
+        player.teleport(battlefield.getLocation());
     }
 
     public void teleportLobby(Player player) {
-        player.teleport(lobby);
+        player.teleport(lobby.getLocation());
     }
 
-    public boolean isArena(World arena) {
-        return this.arena.getWorld().equals(arena);
+    public boolean isBattlefield(World battlefield) {
+        return this.battlefield.getWorld().equals(battlefield);
     }
 
     public boolean isLobby(World lobby) {
         return this.lobby.getWorld().equals(lobby);
     }
 
-    public Location getArena() {
-        return arena;
+    public ArenaLocation getBattlefield0() {
+        return battlefield;
     }
 
-    public Location getLobby() {
+    public ArenaLocation getLobby() {
         return lobby;
     }
 }

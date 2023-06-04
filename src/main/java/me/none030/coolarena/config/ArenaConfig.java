@@ -1,8 +1,8 @@
 package me.none030.coolarena.config;
 
 import me.none030.coolarena.arena.Arena;
+import me.none030.coolarena.arena.ArenaLocation;
 import me.none030.coolarena.arena.ArenaManager;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -26,11 +26,11 @@ public class ArenaConfig extends Config {
     }
 
     private Arena loadArena(FileConfiguration config) {
-        Location arena = loadLocation(config.getConfigurationSection("arena"));
+        ArenaLocation arena = loadLocation(config.getConfigurationSection("arena"));
         if (arena == null) {
             return null;
         }
-        Location lobby = loadLocation(config.getConfigurationSection("lobby"));
+        ArenaLocation lobby = loadLocation(config.getConfigurationSection("lobby"));
         if (lobby == null) {
             return null;
         }
