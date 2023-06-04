@@ -1,0 +1,14 @@
+arena:
+  world: coolarena
+  x: 0
+  y: 70
+  z: 0
+  yaw: 0
+  pitch: 0
+lobby:
+  world: lobby
+  x: 0
+  y: 70
+  z: 0
+  yaw: 0
+  pitch: 0

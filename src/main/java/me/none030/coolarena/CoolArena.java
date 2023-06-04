@@ -4,14 +4,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CoolArena extends JavaPlugin {
 
+    private static CoolArena Instance;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        Instance = this;
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+    public static CoolArena getInstance() {
+        return Instance;
     }
 }
