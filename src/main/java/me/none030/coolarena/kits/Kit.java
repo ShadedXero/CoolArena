@@ -1,9 +1,7 @@
 package me.none030.coolarena.kits;
 
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.potion.PotionEffect;
 
 public class Kit {
 

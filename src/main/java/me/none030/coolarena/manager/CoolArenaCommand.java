@@ -36,6 +36,32 @@ public class CoolArenaCommand implements TabExecutor {
             kit.give(player);
             return true;
         }
+        if (args[0].equalsIgnoreCase("add")) {
+            if (!player.hasPermission("coolarena.add")) {
+                player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
+                return false;
+            }
+            if (args.length != 2) {
+                player.sendMessage(MessageUtils.color("&cUsage: /coolarena add <kit-id>"));
+                return false;
+            }
+            String kitId = args[1];
+            Kit kit = new Kit(kitId, kitId, player.getInventory());
+            coolArenaManager.getKitManager().addKit(kit);
+        }
+        if (args[0].equalsIgnoreCase("remove")) {
+            if (!player.hasPermission("coolarena.remove")) {
+                player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
+                return false;
+            }
+            if (args.length != 2) {
+                player.sendMessage(MessageUtils.color("&cUsage: /coolarena remove <kit-id>"));
+                return false;
+            }
+            String kitId = args[1];
+            coolArenaManager.getKitManager().getKitConfig().removeKit(kitId);
+            player.sendMessage(MessageUtils.color("&aKit Removed"));
+        }
         if (args[0].equalsIgnoreCase("reload")) {
             if (!player.hasPermission("coolarena.reload")) {
                 player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
@@ -65,7 +91,17 @@ public class CoolArenaCommand implements TabExecutor {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 1) {
-            return new ArrayList<>(coolArenaManager.getKitManager().getKitById().keySet());
+            List<String> arguments = new ArrayList<>(coolArenaManager.getKitManager().getKitById().keySet());
+            if (sender.hasPermission("coolarena.add")) {
+                arguments.add("add");
+            }
+            if (sender.hasPermission("coolarena.remove")) {
+                arguments.add("remove");
+            }
+            if (sender.hasPermission("coolarena.reload")) {
+                arguments.add("reload");
+            }
+            return arguments;
         }
         return null;
     }
