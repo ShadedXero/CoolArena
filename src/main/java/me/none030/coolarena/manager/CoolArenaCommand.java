@@ -100,6 +100,9 @@ public class CoolArenaCommand implements TabExecutor {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 1) {
             List<String> arguments = new ArrayList<>(coolArenaManager.getKitManager().getKitById().keySet());
+            if (sender.hasPermission("coolarena.leave")) {
+                arguments.add("leave");
+            }
             if (sender.hasPermission("coolarena.add")) {
                 arguments.add("add");
             }
