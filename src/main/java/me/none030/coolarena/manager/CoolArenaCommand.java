@@ -61,6 +61,7 @@ public class CoolArenaCommand implements TabExecutor {
             String kitId = args[1];
             Kit kit = new Kit(kitId, kitId, player.getInventory());
             coolArenaManager.getKitManager().addKit(kit);
+            player.sendMessage(MessageUtils.color("&aKit Added"));
             return true;
         }
         if (args[0].equalsIgnoreCase("remove")) {
