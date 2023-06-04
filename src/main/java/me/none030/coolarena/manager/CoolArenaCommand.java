@@ -36,6 +36,14 @@ public class CoolArenaCommand implements TabExecutor {
             kit.give(player);
             return true;
         }
+        if (args[0].equalsIgnoreCase("leave")) {
+            if (!player.hasPermission("coolarena.leave")) {
+                player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
+                return false;
+            }
+            coolArenaManager.getArenaManager().getArena().reset(player);
+            player.teleport(coolArenaManager.getArenaManager().getArena().getLobby().getLocation());
+        }
         if (args[0].equalsIgnoreCase("add")) {
             if (!player.hasPermission("coolarena.add")) {
                 player.sendMessage(MessageUtils.color("&cYou don't have permission to use this"));
@@ -83,7 +91,7 @@ public class CoolArenaCommand implements TabExecutor {
             coolArenaManager.getArenaManager().getArena().teleportBattlefield(player);
             Kit kit = coolArenaManager.getKitManager().getKitById().get(kitId);
             kit.give(player);
-            break;
+            return true;
         }
         return false;
     }
