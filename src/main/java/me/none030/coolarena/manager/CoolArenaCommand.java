@@ -54,8 +54,10 @@ public class CoolArenaCommand implements TabExecutor {
             if (kitId.equalsIgnoreCase(args[0])) {
                 continue;
             }
+            coolArenaManager.getArenaManager().getArena().teleportBattlefield(player);
             Kit kit = coolArenaManager.getKitManager().getKitById().get(kitId);
             kit.give(player);
+            break;
         }
         return false;
     }
